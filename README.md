@@ -7,26 +7,25 @@ _A curated collection of PortSwigger-style lab writeups, notes, and exploits for
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Workflow Status](https://github.com/Nish344/owasp-top10-web-security/actions/workflows/update-readme.yml/badge.svg)
 
-**Overall progress:** 0 / 3 labs completed.
+**Overall progress:** 2 / 2 labs completed.
 
 ```mermaid
 pie showData
   title OWASP Top 10 Lab Progress
-  "Completed Labs" : 0
-  "Pending Labs" : 3
+  "Completed Labs" : 2
+  "Pending Labs" : 0
 ```
 
 ## 📂 Categories
 
-- 🟢 **01 Broken Access Control** — 0 / 3 completed — [View](01_Broken_Access_Control/README.md)
+- 🟢 **01 Broken Access Control** — 2 / 2 completed — [View](01_Broken_Access_Control/README.md)
 
 ## 🧪 Recent Labs
 
 | Status | Lab | Category | Tags |
 |--------|-----|----------|------|
-| ⬜ | [Readme](01_Broken_Access_Control/README.md) | 01 Broken Access Control | `-` |
-| ⬜ | [Unprotected Admin Functionality With Unpredictable Url](01_Broken_Access_Control/Unprotected Admin Functionality with Unpredictable URL.md) | 01 Broken Access Control | `-` |
-| ⬜ | [Unprotected Admin Functionality](01_Broken_Access_Control/Unprotected Admin Functionality.md) | 01 Broken Access Control | `-` |
+| ✅ | [Unprotected Admin Functionality with Unpredictable URL](01_Broken_Access_Control/Unprotected%20Admin%20Functionality%20with%20Unpredictable%20URL.md) | 01 Broken Access Control | `Broken-Access-Control, Admin-Panel, Info-Disclosure, Client-Side-Code` |
+| ✅ | [Unprotected Admin Functionality](01_Broken_Access_Control/Unprotected%20Admin%20Functionality.md) | 01 Broken Access Control | `Broken-Access-Control, Admin-Panel, Info-Disclosure, Robots.txt` |
 
 ## 🤝 How to Contribute
 
@@ -37,4 +36,4 @@ pie showData
 ## ⚠️ Disclaimer
 
 > This repository is for **educational purposes only**.  
-> Do not attempt these techniques on systems you don’t own or have explicit permission to test.
+> Do not attempt these techniques on systems you don't own or have explicit permission to test.

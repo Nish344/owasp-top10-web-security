@@ -7,23 +7,25 @@ _A curated collection of PortSwigger-style lab writeups, notes, and exploits for
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Workflow Status](https://github.com/Nish344/owasp-top10-web-security/actions/workflows/update-readme.yml/badge.svg)
 
-**Overall progress:** 0 / 1 labs completed.
+**Overall progress:** 0 / 3 labs completed.
 
 ```mermaid
 pie showData
   title OWASP Top 10 Lab Progress
   "Completed Labs" : 0
-  "Pending Labs" : 1
+  "Pending Labs" : 3
 ```
 
 ## 📂 Categories
 
-- 🟢 **01 Broken Access Control** — 0 / 1 completed — [View](01_Broken_Access_Control/README.md)
+- 🟢 **01 Broken Access Control** — 0 / 3 completed — [View](01_Broken_Access_Control/README.md)
 
 ## 🧪 Recent Labs
 
 | Status | Lab | Category | Tags |
 |--------|-----|----------|------|
+| ⬜ | [Readme](01_Broken_Access_Control/README.md) | 01 Broken Access Control | `-` |
+| ⬜ | [Unprotected Admin Functionality With Unpredictable Url](01_Broken_Access_Control/Unprotected Admin Functionality with Unpredictable URL.md) | 01 Broken Access Control | `-` |
 | ⬜ | [Unprotected Admin Functionality](01_Broken_Access_Control/Unprotected Admin Functionality.md) | 01 Broken Access Control | `-` |
 
 ## 🤝 How to Contribute

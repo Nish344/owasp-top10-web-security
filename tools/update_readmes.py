@@ -233,13 +233,21 @@ def main():
     print(f"Found {len(cats)} categories:\n")
     
     categories_info = []
+    # Manual lab totals override
+    MANUAL_TOTALS = {
+        '01 Broken Access Control': 13,
+        '02 Cryptographic Failures': 10,
+        '03 Injection': 20,
+        # ... add more as needed
+        }
+    
     for cat in cats:
         name = cat.name.replace('_', ' ')
         print(f"Processing: {name}")
         
         labs = scan_labs(cat)
         done = sum(1 for l in labs if l['date_completed'])
-        total = len(labs)
+        total = MANUAL_TOTALS.get(name, len(labs))
         
         print(f"  → Found {total} labs ({done} completed)")
         

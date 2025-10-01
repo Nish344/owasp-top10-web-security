@@ -1,14 +1,12 @@
-------------------------
-Title: "Unprotected Admin Functionality"  
-Category: "01-Broken-Access-Control"  
-Lab_ID: "Unprotected-Admin-Panel-001"  
-Source: "PortSwigger"  
-Date_Completed: "2025-10-01"  
-Tag: "`Broken-Access-Control`, `Admin-Panel`, `Info-Disclosure`, `Robots.txt`"  
-----------------------------------
 
+#  Unprotected Admin Functionality   
 
-# Unprotected Admin Functionality — Delete user `carlos`
+**Category**: 01-Broken-Access-Control  
+**Lab_ID**: Unprotected-Admin-Panel-001  
+**Source**: PortSwigger   
+**Date_Completed**: 2025-10-01  
+**Tag**: `Broken-Access-Control`, `Admin-Panel`, `Info-Disclosure`, `Robots.txt`  
+
 
 ## Executive summary
 
@@ -161,19 +159,6 @@ username=carlos
 
 ---
 
-## Suggested filename & git metadata
-
-**File:** `02-Broken-Access-Control/Unprotected-Admin-Panel-001.md`
-**Suggested commit message:**
-
-```
-feat(labs): add Unprotected Admin Functionality analysis and remediation (02-Broken-Access-Control/Unprotected-Admin-Panel-001)
-```
-
----
-
 > ⚠️ **Legal & ethical reminder:** This writeup documents testing performed in a controlled PortSwigger lab environment. Do not apply these techniques to real systems without explicit authorization.
 
 ---
-
-Would you like this exported as the file `02-Broken-Access-Control/Unprotected-Admin-Panel-001.md` (ready to paste), or should I also generate a short one-line summary suitable for your category README checklist?

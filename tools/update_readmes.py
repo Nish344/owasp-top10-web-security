@@ -3,7 +3,7 @@
 update_readmes.py
 
 Scans repo for category folders named like "01-Broken-Access-Control" or "01_Broken_Access_Control",
-parses lab markdown front-matter and generates:
+parses lab markdown metadata and generates:
 
 - Root README.md with badges, progress chart, categories, recent labs.
 - README.md inside each category with checklist and cheatsheet placeholder.
@@ -15,74 +15,140 @@ from pathlib import Path
 
 ROOT = Path('.').resolve()
 
+# More flexible front-matter regex that handles both with and without --- delimiters
 FRONT_MATTER_RE = re.compile(r'^---\s*\n(.*?)\n---\s*\n', re.DOTALL | re.IGNORECASE)
-KEY_RE = re.compile(r'^\s*([A-Za-z0-9_\-]+)\s*:\s*(.+)\s*$', re.MULTILINE)
+# Alternative: Parse metadata from first few lines if no --- delimiters
+METADATA_LINE_RE = re.compile(r'^\*\*([^*]+)\*\*\s*:\s*(.+)$', re.MULTILINE)
+KEY_VALUE_RE = re.compile(r'^\s*([A-Za-z0-9_\-]+)\s*:\s*(.+)\s*$', re.MULTILINE)
 
 CATEGORY_FOLDER_RE = re.compile(r'^\d{2}[-_].+')
 
 def parse_front_matter(md_text):
-    """Return dict of front-matter keys (lowercased)."""
-    m = FRONT_MATTER_RE.match(md_text)
-    if not m:
-        return {}
-    block = m.group(1)
+    """Return dict of front-matter/metadata keys (lowercased)."""
     data = {}
-    for km in KEY_RE.finditer(block):
-        k = km.group(1).strip().lower()
-        v = km.group(2).strip().strip('"').strip("'")
+    
+    # First, try standard YAML front-matter with --- delimiters
+    m = FRONT_MATTER_RE.match(md_text)
+    if m:
+        block = m.group(1)
+        for km in KEY_VALUE_RE.finditer(block):
+            k = km.group(1).strip().lower().replace('_', '-')
+            v = km.group(2).strip().strip('"').strip("'").strip('`')
+            data[k] = v
+        return data
+    
+    # Fallback: Parse **Key**: Value format (your current format)
+    # Look at first 30 lines only for metadata
+    lines = md_text.split('\n')[:30]
+    header_text = '\n'.join(lines)
+    
+    for match in METADATA_LINE_RE.finditer(header_text):
+        k = match.group(1).strip().lower().replace('_', '-').replace(' ', '-')
+        v = match.group(2).strip().strip('"').strip("'").strip('`')
         data[k] = v
+    
     return data
 
+def extract_title_from_markdown(md_text):
+    """Extract title from first # heading in markdown."""
+    lines = md_text.split('\n')
+    for line in lines[:20]:  # Check first 20 lines
+        line = line.strip()
+        if line.startswith('# '):
+            return line.lstrip('# ').strip()
+    return None
+
 def scan_categories(root):
+    """Scan for category folders matching pattern 01-* or 01_*"""
     categories = []
     for p in sorted(root.iterdir()):
         if p.is_dir() and CATEGORY_FOLDER_RE.match(p.name):
-            categories.append(p)
+            # Skip hidden directories and common non-category dirs
+            if not p.name.startswith('.') and p.name.lower() not in ['tools', 'scripts', 'assets']:
+                categories.append(p)
     return categories
 
 def scan_labs(category_path):
+    """Scan all markdown files in category folder and extract metadata."""
     labs = []
     for md in sorted(category_path.glob('*.md')):
-        text = md.read_text(encoding='utf-8', errors='ignore')
-        fm = parse_front_matter(text)
-        title = fm.get('title', '') or md.stem.replace('-', ' ').replace('_', ' ').title()
-        lab_id = fm.get('lab_id', '')
-        date_completed = fm.get('date_completed', '')
-        tag = fm.get('tag', '')
-        labs.append({
-            'filename': md.name,
-            'title': title,
-            'lab_id': lab_id,
-            'date_completed': date_completed,
-            'tag': tag,
-        })
+        # Skip README.md files in metadata extraction
+        if md.name.upper() == 'README.MD':
+            continue
+            
+        try:
+            text = md.read_text(encoding='utf-8', errors='ignore')
+            fm = parse_front_matter(text)
+            
+            # Extract title with multiple fallbacks
+            title = fm.get('title', '')
+            if not title:
+                # Try to extract from first # heading
+                title = extract_title_from_markdown(text)
+            if not title:
+                # Fallback to filename
+                title = md.stem.replace('-', ' ').replace('_', ' ').title()
+            
+            lab_id = fm.get('lab-id', '')
+            date_completed = fm.get('date-completed', '')
+            tag = fm.get('tag', '')
+            
+            # Clean up tag formatting
+            if tag:
+                # Remove backticks and clean up
+                tag = tag.replace('`', '').strip()
+            
+            labs.append({
+                'filename': md.name,
+                'title': title,
+                'lab_id': lab_id,
+                'date_completed': date_completed,
+                'tag': tag,
+            })
+        except Exception as e:
+            print(f"Warning: Could not parse {md.name}: {e}")
+            continue
+    
     return labs
 
 def generate_category_readme(category_path, labs, category_title):
+    """Generate README.md for a category folder."""
     readme_path = category_path / 'README.md'
+    
+    # Filter out README from labs list
+    labs = [l for l in labs if l['filename'].upper() != 'README.MD']
+    
     completed = sum(1 for l in labs if l['date_completed'])
     total = len(labs)
+    
     header = f"# {category_title}\n\n"
     intro = (
         f"This folder contains lab writeups for the **{category_title}** category.\n\n"
         f"### Progress\n\n- Completed: **{completed}** / **{total}**\n\n### Labs\n\n"
     )
+    
     lines = []
     for l in labs:
         status = "✅" if l['date_completed'] else "⬜"
-        lab_line = f"- {status} [{l['title']}]({l['filename']})"
+        # Use markdown link with proper escaping
+        lab_line = f"- {status} [{l['title']}]({l['filename'].replace(' ', '%20')})"
+        
         if l['lab_id']:
             lab_line += f" — `{l['lab_id']}`"
         if l['tag']:
             lab_line += f" — _{l['tag']}_"
         lines.append(lab_line)
+    
     cheatsheet = "\n\n### Cheatsheet / Quick Notes\n\n- (Add category-specific payloads / detection tips here)\n"
     content = header + intro + "\n".join(lines) + cheatsheet + "\n"
+    
     readme_path.write_text(content, encoding='utf-8')
-    print(f"Wrote category README: {readme_path}")
+    print(f"✓ Wrote category README: {readme_path}")
 
 def generate_root_readme(categories_info):
+    """Generate main README.md at repository root."""
     readme_path = ROOT / 'README.md'
+    
     total_labs = sum(info['total'] for info in categories_info)
     total_done = sum(info['done'] for info in categories_info)
 
@@ -113,6 +179,8 @@ def generate_root_readme(categories_info):
     for i, info in enumerate(categories_info):
         cat_name = info['name']
         rel = os.path.relpath(info['path'], ROOT)
+        # Convert Windows paths to forward slashes for markdown
+        rel = rel.replace('\\', '/')
         emoji = emoji_list[i % len(emoji_list)]
         categories += f"- {emoji} **{cat_name}** — {info['done']} / {info['total']} completed — [View]({rel}/README.md)\n"
     categories += "\n"
@@ -121,10 +189,16 @@ def generate_root_readme(categories_info):
     labs_section = "## 🧪 Recent Labs\n\n"
     labs_section += "| Status | Lab | Category | Tags |\n"
     labs_section += "|--------|-----|----------|------|\n"
+    
     for info in categories_info:
-        for l in info['labs'][:5]:
+        # Show all labs, not just first 5
+        for l in info['labs']:
             status = "✅" if l['date_completed'] else "⬜"
             rel_path = os.path.join(os.path.relpath(info['path'], ROOT), l['filename'])
+            # Convert Windows paths to forward slashes
+            rel_path = rel_path.replace('\\', '/')
+            # URL encode spaces in filename
+            rel_path = rel_path.replace(' ', '%20')
             tags = l['tag'] if l['tag'] else "-"
             labs_section += f"| {status} | [{l['title']}]({rel_path}) | {info['name']} | `{tags}` |\n"
     labs_section += "\n"
@@ -137,32 +211,54 @@ def generate_root_readme(categories_info):
         "- Submit a PR 🚀\n\n"
         "## ⚠️ Disclaimer\n\n"
         "> This repository is for **educational purposes only**.  \n"
-        "> Do not attempt these techniques on systems you don’t own or have explicit permission to test.\n"
+        "> Do not attempt these techniques on systems you don't own or have explicit permission to test.\n"
     )
 
     content = header + progress + chart + categories + labs_section + footer
     readme_path.write_text(content, encoding='utf-8')
-    print(f"Wrote root README: {readme_path}")
+    print(f"✓ Wrote root README: {readme_path}")
 
 def main():
-    print("Scanning categories...")
+    print("=" * 60)
+    print("README Generator for OWASP Top 10 Lab Repository")
+    print("=" * 60)
+    print(f"\nScanning categories in: {ROOT}\n")
+    
     cats = scan_categories(ROOT)
+    
+    if not cats:
+        print("⚠️  No category folders found matching pattern 01-* or 01_*")
+        return
+    
+    print(f"Found {len(cats)} categories:\n")
+    
     categories_info = []
     for cat in cats:
-        name = cat.name.replace('_','-')
+        name = cat.name.replace('_', ' ')
+        print(f"Processing: {name}")
+        
         labs = scan_labs(cat)
         done = sum(1 for l in labs if l['date_completed'])
         total = len(labs)
-        generate_category_readme(cat, labs, name.replace('-', ' '))
+        
+        print(f"  → Found {total} labs ({done} completed)")
+        
+        generate_category_readme(cat, labs, name)
+        
         categories_info.append({
-            'name': name.replace('-', ' '),
+            'name': name,
             'path': cat,
             'labs': labs,
             'done': done,
             'total': total
         })
+    
+    print("\nGenerating root README.md...")
     generate_root_readme(categories_info)
-    print("Done.")
+    
+    print("\n" + "=" * 60)
+    print("✓ All READMEs generated successfully!")
+    print("=" * 60)
 
 if __name__ == '__main__':
     main()

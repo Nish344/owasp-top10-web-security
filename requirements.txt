@@ -1,0 +1,4 @@
+# Add any Python dependencies here
+# For example:
+# pyyaml==6.0.1
+# markdown==3.5.1

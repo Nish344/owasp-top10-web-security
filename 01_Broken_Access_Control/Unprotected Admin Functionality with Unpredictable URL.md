@@ -161,7 +161,7 @@ username=carlos
 
 ## Evidence & validation 
 
-* Home page source contained JavaScript with hardcoded admin path (e.g., `/admin-jhc9ve`).  
+* Home page source contained JavaScript with hardcoded admin path .  
 * Admin UI accessible without prior authentication.  
 * Successful deletion of `carlos` verified via admin UI state change / success response.
 

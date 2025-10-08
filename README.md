@@ -7,18 +7,19 @@ _A curated collection of PortSwigger-style lab writeups, notes, and exploits for
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Workflow Status](https://github.com/Nish344/owasp-top10-web-security/actions/workflows/update-readme.yml/badge.svg)
 
-**Overall progress:** 2 / 13 labs completed.
+**Overall progress:** 2 / 33 labs completed.
 
 ```mermaid
 pie showData
   title OWASP Top 10 Lab Progress
   "Completed Labs" : 2
-  "Pending Labs" : 11
+  "Pending Labs" : 31
 ```
 
 ## 📂 Categories
 
 - 🟢 **01 Broken Access Control** — 2 / 13 completed — [View](01_Broken_Access_Control/README.md)
+- 🔵 **03 Injection** — 0 / 20 completed — [View](03_Injection/README.md)
 
 ## 🧪 Recent Labs
 

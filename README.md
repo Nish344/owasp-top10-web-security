@@ -7,18 +7,18 @@ _A curated collection of PortSwigger-style lab writeups, notes, and exploits for
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Workflow Status](https://github.com/Nish344/owasp-top10-web-security/actions/workflows/update-readme.yml/badge.svg)
 
-**Overall progress:** 3 / 33 labs completed.
+**Overall progress:** 4 / 33 labs completed.
 
 ```mermaid
 pie showData
   title OWASP Top 10 Lab Progress
-  "Completed Labs" : 3
-  "Pending Labs" : 30
+  "Completed Labs" : 4
+  "Pending Labs" : 29
 ```
 
 ## 📂 Categories
 
-- 🟢 **01 Broken Access Control** — 2 / 13 completed — [View](01_Broken_Access_Control/README.md)
+- 🟢 **01 Broken Access Control** — 3 / 13 completed — [View](01_Broken_Access_Control/README.md)
 - 🔵 **03 Injection** — 1 / 20 completed — [View](03_Injection/README.md)
 
 ## 🧪 Recent Labs
@@ -27,6 +27,7 @@ pie showData
 |--------|-----|----------|------|
 | ✅ | [Unprotected Admin Functionality with Unpredictable URL](01_Broken_Access_Control/Unprotected%20Admin%20Functionality%20with%20Unpredictable%20URL.md) | 01 Broken Access Control | `Broken-Access-Control, Admin-Panel, Info-Disclosure, Client-Side-Code` |
 | ✅ | [Unprotected Admin Functionality](01_Broken_Access_Control/Unprotected%20Admin%20Functionality.md) | 01 Broken Access Control | `Broken-Access-Control, Admin-Panel, Info-Disclosure, Robots.txt` |
+| ✅ | [User Role Controlled by Request Parameter](01_Broken_Access_Control/User%20Role%20Controlled%20by%20Request%20Parameter.md) | 01 Broken Access Control | `Broken-Access-Control, Admin-Panel, Cookie-Manipulation, Horizontal-Privilege-Escalation` |
 | ✅ | [Server-Side Template Injection (SSTI) via ERB Template](03_Injection/SSTI_via_ERB_Template.md) | 03 Injection | `SSTI, ERB-Template, Code-Injection, File-Deletion` |
 
 ## 🤝 How to Contribute

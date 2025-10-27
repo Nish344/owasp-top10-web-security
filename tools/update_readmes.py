@@ -112,10 +112,9 @@ def scan_labs(category_path):
     return labs
 
 def generate_category_readme(category_path, labs, category_title, done, total):
-    """Generate README.md for a category folder."""
+    """Generate README.md for a category folder while preserving any manual cheatsheet content."""
     readme_path = category_path / 'README.md'
-    # labs already excludes README.md if filtered earlier
-    
+
     header = f"# {category_title}\n\n"
     intro = (
         f"This folder contains lab writeups for the **{category_title}** category.\n\n"
@@ -134,12 +133,30 @@ def generate_category_readme(category_path, labs, category_title, done, total):
             lab_line += f" — _{l['tag']}_"
         lines.append(lab_line)
 
-    # Cheatsheet heading, but leave blank underneath
-    cheatsheet = "\n\n### Cheatsheet / Quick Notes\n\n"
+    auto_content = header + intro + "\n".join(lines) + "\n\n"
 
-    content = header + intro + "\n".join(lines) + cheatsheet + "\n"
-    readme_path.write_text(content, encoding='utf-8')
-    print(f"✓ Wrote category README: {readme_path}")
+    # Cheatsheet heading we'll ensure exists; preserve user content if any
+    cheatsheet_heading = "### Cheatsheet / Quick Notes\n\n"
+
+    if readme_path.exists():
+        existing = readme_path.read_text(encoding='utf-8', errors='ignore')
+        # Look for the cheatsheet heading (exact match). If found, preserve everything after it.
+        split_token = "### Cheatsheet / Quick Notes"
+        if split_token in existing:
+            # Keep heading + whatever follows (preserve trailing whitespace)
+            _, trailing = existing.split(split_token, 1)
+            # Reconstruct: auto_content + heading + preserved trailing (strip leading newlines)
+            preserved = trailing.lstrip('\n')
+            new_content = auto_content + cheatsheet_heading + preserved
+        else:
+            # No existing cheatsheet — create heading but leave body empty
+            new_content = auto_content + cheatsheet_heading + "\n"
+    else:
+        # No README exists yet — create with empty cheatsheet section
+        new_content = auto_content + cheatsheet_heading + "\n"
+
+    readme_path.write_text(new_content, encoding='utf-8')
+    print(f"✓ Wrote category README (preserved cheatsheet if present): {readme_path}")
 
 
 def generate_root_readme(categories_info):

@@ -111,39 +111,36 @@ def scan_labs(category_path):
     
     return labs
 
-def generate_category_readme(category_path, labs, category_title):
+def generate_category_readme(category_path, labs, category_title, done, total):
     """Generate README.md for a category folder."""
     readme_path = category_path / 'README.md'
-    
-    # Filter out README from labs list
-    labs = [l for l in labs if l['filename'].upper() != 'README.MD']
-    
-    completed = sum(1 for l in labs if l['date_completed'])
-    total = len(labs)
+    # labs already excludes README.md if filtered earlier
     
     header = f"# {category_title}\n\n"
     intro = (
         f"This folder contains lab writeups for the **{category_title}** category.\n\n"
-        f"### Progress\n\n- Completed: **{completed}** / **{total}**\n\n### Labs\n\n"
+        f"### Progress\n\n"
+        f"- Completed: **{done}** / **{total}**\n\n"
+        "### Labs\n\n"
     )
-    
+
     lines = []
     for l in labs:
         status = "✅" if l['date_completed'] else "⬜"
-        # Use markdown link with proper escaping
         lab_line = f"- {status} [{l['title']}]({l['filename'].replace(' ', '%20')})"
-        
         if l['lab_id']:
             lab_line += f" — `{l['lab_id']}`"
         if l['tag']:
             lab_line += f" — _{l['tag']}_"
         lines.append(lab_line)
-    
-    cheatsheet = "\n\n### Cheatsheet / Quick Notes\n\n- (Add category-specific payloads / detection tips here)\n"
+
+    # Cheatsheet heading, but leave blank underneath
+    cheatsheet = "\n\n### Cheatsheet / Quick Notes\n\n"
+
     content = header + intro + "\n".join(lines) + cheatsheet + "\n"
-    
     readme_path.write_text(content, encoding='utf-8')
     print(f"✓ Wrote category README: {readme_path}")
+
 
 def generate_root_readme(categories_info):
     """Generate main README.md at repository root."""
@@ -243,16 +240,11 @@ def main():
     
     for cat in cats:
         name = cat.name.replace('_', ' ')
-        print(f"Processing: {name}")
-        
         labs = scan_labs(cat)
         done = sum(1 for l in labs if l['date_completed'])
         total = MANUAL_TOTALS.get(name, len(labs))
-        
         print(f"  → Found {total} labs ({done} completed)")
-        
-        generate_category_readme(cat, labs, name)
-        
+        generate_category_readme(cat, labs, name, done, total)
         categories_info.append({
             'name': name,
             'path': cat,

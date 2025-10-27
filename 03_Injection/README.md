@@ -4,7 +4,7 @@ This folder contains lab writeups for the **03 Injection** category.
 
 ### Progress
 
-- Completed: **1** / **1**
+- Completed: **1** / **20**
 
 ### Labs
 
@@ -12,5 +12,4 @@ This folder contains lab writeups for the **03 Injection** category.
 
 ### Cheatsheet / Quick Notes
 
-- (Add category-specific payloads / detection tips here)
 

@@ -4,7 +4,7 @@ This folder contains lab writeups for the **01 Broken Access Control** category.
 
 ### Progress
 
-- Completed: **6** / **6**
+- Completed: **6** / **13**
 
 ### Labs
 
@@ -17,5 +17,4 @@ This folder contains lab writeups for the **01 Broken Access Control** category.
 
 ### Cheatsheet / Quick Notes
 
-- (Add category-specific payloads / detection tips here)
 

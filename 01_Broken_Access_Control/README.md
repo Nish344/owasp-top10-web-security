@@ -17,4 +17,3 @@ This folder contains lab writeups for the **01 Broken Access Control** category.
 
 ### Cheatsheet / Quick Notes
 
-

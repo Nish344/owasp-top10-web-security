@@ -32,7 +32,7 @@ Locate any administrative interface disclosed by the application, verify whether
 
 ---
 
-## Discovery (how the admin interface was found)
+## Discovery 
 
 1. Requested `/robots.txt` from the application root.
 2. `robots.txt` contained a `Disallow:` line revealing the admin path (e.g., `/administrator-panel`).
@@ -42,7 +42,7 @@ Locate any administrative interface disclosed by the application, verify whether
 
 ---
 
-## Reproduction steps (concise, non-sensitive)
+## Reproduction steps 
 
 1. Open the application base URL in a browser.
 2. Append `/robots.txt` to the URL and examine contents for `Disallow` entries.
@@ -51,7 +51,7 @@ Locate any administrative interface disclosed by the application, verify whether
 5. In the admin UI, locate the user management area, identify user `carlos`, and invoke the delete action.
 6. Verify the user is no longer listed or that the UI returns a successful deletion confirmation.
 
-**Representative HTTP interaction (illustrative only):**
+**Representative HTTP interaction :**
 
 ```
 GET /robots.txt HTTP/1.1
@@ -94,14 +94,14 @@ username=carlos
 
 ---
 
-## Remediation (recommended, prioritized)
+## Remediation 
 
-### Immediate / short-term (apply within hours)
+### Immediate / short-term 
 
 1. Remove administrative URLs from `robots.txt` and any public sitemaps or disclosures.
 2. If feasible, restrict admin endpoints to internal IP ranges or via network-level controls while permanent fixes are applied.
 
-### Medium-term (apply within days)
+### Medium-term 
 
 1. **Enforce authentication**: Require authenticated sessions for any admin pages. Use strong authentication (password + MFA where appropriate).
 2. **Enforce server-side authorization**: Validate user role/privileges on every admin endpoint and action; do not rely on client-side controls or obscurity.
@@ -117,7 +117,7 @@ username=carlos
 
 ---
 
-## Detection & verification guidance (for devs / QA / security teams)
+## Detection & verification guidance 
 
 * Verify that admin routes return `401` or `403` for unauthenticated requests.
 * Ensure UI-only protections are not relied upon; validate server-side enforcement by simulating unauthenticated requests and attempting actions.
@@ -151,7 +151,7 @@ username=carlos
 
 ---
 
-## Evidence & validation (for lab record)
+## Evidence & validation 
 
 * `robots.txt` contained a `Disallow` entry for the admin path.
 * Admin UI accessible without prior authentication.

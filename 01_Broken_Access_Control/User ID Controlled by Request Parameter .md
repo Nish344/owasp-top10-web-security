@@ -58,7 +58,6 @@ Exploit the horizontal privilege escalation vulnerability to obtain and submit t
 * Authenticated user can access another user’s sensitive data (API key).  
 * Potential for horizontal privilege escalation across all user accounts.  
 * Risk of API key misuse (e.g., unauthorized API access, data exfiltration).  
-* Affects confidentiality of user-specific information.
 
 ---
 

@@ -4,7 +4,7 @@ This folder contains lab writeups for the **01 Broken Access Control** category.
 
 ### Progress
 
-- Completed: **7** / **13**
+- Completed: **8** / **13**
 
 ### Labs
 
@@ -13,6 +13,7 @@ This folder contains lab writeups for the **01 Broken Access Control** category.
 - ✅ [Unprotected Admin Functionality with Unpredictable URL](Unprotected%20Admin%20Functionality%20with%20Unpredictable%20URL.md) — `Unprotected-Admin-Panel-002` — _Broken-Access-Control, Admin-Panel, Info-Disclosure, Client-Side-Code_
 - ✅ [Unprotected Admin Functionality](Unprotected%20Admin%20Functionality.md) — `Unprotected-Admin-Panel-001` — _Broken-Access-Control, Admin-Panel, Info-Disclosure, Robots.txt_
 - ✅ [User ID Controlled by Request Parameter](User%20ID%20Controlled%20by%20Request%20Parameter%20.md) — `Horizontal-Privilege-Escalation-001` — _Broken-Access-Control, Horizontal-Privilege-Escalation, ID-Parameter, API-Key-Disclosure_
+- ✅ [User ID Controlled by Request Parameter with Data Leakage in Redirect](User%20ID%20Controlled%20by%20Request%20Parameter%20with%20Data%20Leakage%20in%20Redirect.md) — `IDOR-Data-Leakage-Redirect-001` — _Broken-Access-Control, IDOR, Data-Leakage, Redirect-Response, API-Key-Disclosure_
 - ✅ [User ID Controlled by Request Parameter with Unpredictable User IDs](User%20ID%20Controlled%20by%20Request%20Parameter%20with%20Unpredictable%20User%20IDs.md) — `Horizontal-Privilege-Escalation-GUID-001` — _Broken-Access-Control, Horizontal-Privilege-Escalation, IDOR, GUID-User-ID, API-Key-Disclosure_
 - ✅ [User Role Controlled by Request Parameter](User%20Role%20Controlled%20by%20Request%20Parameter.md) — `Role-Parameter-001` — _Broken-Access-Control, Admin-Panel, Cookie-Manipulation, Horizontal-Privilege-Escalation_
 

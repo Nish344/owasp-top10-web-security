@@ -7,18 +7,18 @@ _A curated collection of PortSwigger-style lab writeups, notes, and exploits for
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Workflow Status](https://github.com/Nish344/owasp-top10-web-security/actions/workflows/update-readme.yml/badge.svg)
 
-**Overall progress:** 13 / 33 labs completed.
+**Overall progress:** 14 / 33 labs completed.
 
 ```mermaid
 pie showData
   title OWASP Top 10 Lab Progress
-  "Completed Labs" : 13
-  "Pending Labs" : 20
+  "Completed Labs" : 14
+  "Pending Labs" : 19
 ```
 
 ## 📂 Categories
 
-- 🟢 **01 Broken Access Control** — 12 / 13 completed — [View](01_Broken_Access_Control/README.md)
+- 🟢 **01 Broken Access Control** — 13 / 13 completed — [View](01_Broken_Access_Control/README.md)
 - 🔵 **03 Injection** — 1 / 20 completed — [View](03_Injection/README.md)
 
 ## 🧪 Recent Labs
@@ -36,6 +36,7 @@ pie showData
 | ✅ | [User ID Controlled by Request Parameter with Data Leakage in Redirect](01_Broken_Access_Control/User%20ID%20Controlled%20by%20Request%20Parameter%20with%20Data%20Leakage%20in%20Redirect.md) | 01 Broken Access Control | `Broken-Access-Control, IDOR, Data-Leakage, Redirect-Response, API-Key-Disclosure` |
 | ✅ | [User ID Controlled by Request Parameter with Password Disclosure](01_Broken_Access_Control/User%20ID%20Controlled%20by%20Request%20Parameter%20with%20Password%20Disclosure.md) | 01 Broken Access Control | `Broken-Access-Control, IDOR, Password-Disclosure, Horizontal-Privilege-Escalation, Admin-Access` |
 | ✅ | [User ID Controlled by Request Parameter with Unpredictable User IDs](01_Broken_Access_Control/User%20ID%20Controlled%20by%20Request%20Parameter%20with%20Unpredictable%20User%20IDs.md) | 01 Broken Access Control | `Broken-Access-Control, Horizontal-Privilege-Escalation, IDOR, GUID-User-ID, API-Key-Disclosure` |
+| ✅ | [User Role Can Be Modified in User Profile](01_Broken_Access_Control/User%20Role%20Can%20Be%20Modified%20in%20User%20Profile.md) | 01 Broken Access Control | `Broken-Access-Control, Mass-Assignment, JSON-Tampering, Privilege-Escalation, Insecure-Deserialization` |
 | ✅ | [User Role Controlled by Request Parameter](01_Broken_Access_Control/User%20Role%20Controlled%20by%20Request%20Parameter.md) | 01 Broken Access Control | `Broken-Access-Control, Admin-Panel, Cookie-Manipulation, Horizontal-Privilege-Escalation` |
 | ✅ | [Server-Side Template Injection (SSTI) via ERB Template](03_Injection/SSTI_via_ERB_Template.md) | 03 Injection | `SSTI, ERB-Template, Code-Injection, File-Deletion` |
 

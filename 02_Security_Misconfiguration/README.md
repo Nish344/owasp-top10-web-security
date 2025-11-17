@@ -12,4 +12,3 @@ This folder contains lab writeups for the **02 Security Misconfiguration** categ
 
 ### Cheatsheet / Quick Notes
 
-

@@ -7,19 +7,19 @@ _A curated collection of PortSwigger-style lab writeups, notes, and exploits for
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Workflow Status](https://github.com/Nish344/owasp-top10-web-security/actions/workflows/update-readme.yml/badge.svg)
 
-**Overall progress:** 14 / 14 labs completed.
+**Overall progress:** 15 / 15 labs completed.
 
 ```mermaid
 pie showData
   title OWASP Top 10 Lab Progress
-  "Completed Labs" : 14
+  "Completed Labs" : 15
   "Pending Labs" : 0
 ```
 
 ## 📂 Categories
 
 - 🟢 **01 Broken Access Control** — 13 / 13 completed — [View](01_Broken_Access_Control/README.md)
-- 🔵 **02 Security Misconfiguration** — 1 / 1 completed — [View](02_Security_Misconfiguration/README.md)
+- 🔵 **02 Security Misconfiguration** — 2 / 2 completed — [View](02_Security_Misconfiguration/README.md)
 
 ## 🧪 Recent Labs
 
@@ -38,6 +38,7 @@ pie showData
 | ✅ | [User ID Controlled by Request Parameter with Unpredictable User IDs](01_Broken_Access_Control/User%20ID%20Controlled%20by%20Request%20Parameter%20with%20Unpredictable%20User%20IDs.md) | 01 Broken Access Control | `Broken-Access-Control, Horizontal-Privilege-Escalation, IDOR, GUID-User-ID, API-Key-Disclosure` |
 | ✅ | [User Role Can Be Modified in User Profile](01_Broken_Access_Control/User%20Role%20Can%20Be%20Modified%20in%20User%20Profile.md) | 01 Broken Access Control | `Broken-Access-Control, Mass-Assignment, JSON-Tampering, Privilege-Escalation, Insecure-Deserialization` |
 | ✅ | [User Role Controlled by Request Parameter](01_Broken_Access_Control/User%20Role%20Controlled%20by%20Request%20Parameter.md) | 01 Broken Access Control | `Broken-Access-Control, Admin-Panel, Cookie-Manipulation, Horizontal-Privilege-Escalation` |
+| ✅ | [Information Disclosure via Exposed Debug Page](02_Security_Misconfiguration/Information%20Disclosure%20via%20Exposed%20Debug%20Page.md) | 02 Security Misconfiguration | `Security-Misconfiguration, Information-Disclosure, Debug-Page, phpinfo, Secret-Leak, Environment-Variables` |
 | ✅ | [Information Disclosure via Verbose Error Messages](02_Security_Misconfiguration/Information%20Disclosure%20via%20Verbose%20Error%20Messages.md) | 02 Security Misconfiguration | `Security-Misconfiguration, Information-Disclosure, Verbose-Error-Messages, Framework-Fingerprinting, Apache-Struts` |
 
 ## 🤝 How to Contribute

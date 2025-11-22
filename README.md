@@ -7,19 +7,19 @@ _A curated collection of PortSwigger-style lab writeups, notes, and exploits for
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![Workflow Status](https://github.com/Nish344/owasp-top10-web-security/actions/workflows/update-readme.yml/badge.svg)
 
-**Overall progress:** 15 / 15 labs completed.
+**Overall progress:** 16 / 16 labs completed.
 
 ```mermaid
 pie showData
   title OWASP Top 10 Lab Progress
-  "Completed Labs" : 15
+  "Completed Labs" : 16
   "Pending Labs" : 0
 ```
 
 ## 📂 Categories
 
 - 🟢 **01 Broken Access Control** — 13 / 13 completed — [View](01_Broken_Access_Control/README.md)
-- 🔵 **02 Security Misconfiguration** — 2 / 2 completed — [View](02_Security_Misconfiguration/README.md)
+- 🔵 **02 Security Misconfiguration** — 3 / 3 completed — [View](02_Security_Misconfiguration/README.md)
 
 ## 🧪 Recent Labs
 
@@ -40,6 +40,7 @@ pie showData
 | ✅ | [User Role Controlled by Request Parameter](01_Broken_Access_Control/User%20Role%20Controlled%20by%20Request%20Parameter.md) | 01 Broken Access Control | `Broken-Access-Control, Admin-Panel, Cookie-Manipulation, Horizontal-Privilege-Escalation` |
 | ✅ | [Information Disclosure via Exposed Debug Page](02_Security_Misconfiguration/Information%20Disclosure%20via%20Exposed%20Debug%20Page.md) | 02 Security Misconfiguration | `Security-Misconfiguration, Information-Disclosure, Debug-Page, phpinfo, Secret-Leak, Environment-Variables` |
 | ✅ | [Information Disclosure via Verbose Error Messages](02_Security_Misconfiguration/Information%20Disclosure%20via%20Verbose%20Error%20Messages.md) | 02 Security Misconfiguration | `Security-Misconfiguration, Information-Disclosure, Verbose-Error-Messages, Framework-Fingerprinting, Apache-Struts` |
+| ✅ | [Source Code Disclosure via Backup Files](02_Security_Misconfiguration/Source%20Code%20Disclosure%20via%20Backup%20Files.md) | 02 Security Misconfiguration | `Security-Misconfiguration, Information-Disclosure, Source-Code-Leak, Backup-Files, Hardcoded-Credentials, Directory-Enumeration` |
 
 ## 🤝 How to Contribute
 

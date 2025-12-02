@@ -77,11 +77,10 @@ TRACE /admin HTTP/1.1
 
 **After adding Match & Replace rule, normal request becomes:**
 ```
-GET /admin HTTP/1.1
-Host: 0a3b004c04f28a6e81ab2a3c0087001d.web-security-academy.net
-X-Custom-IP-Authorization: 127.0.0.1     ← injected
-Cookie: session=...
-```
+GET /admin HTTP/1.1  
+Host: 0a3b004c04f28a6e81ab2a3c0087001d.web-security-academy.net  
+X-Custom-IP-Authorization: 127.0.0.1     ← injected  
+Cookie: session=...  
 
 → Admin panel loads successfully.
 
@@ -151,7 +150,7 @@ Cookie: session=...
 - PortSwigger: Authentication bypass via information disclosure
 
 ---
-## Evidence & validation (screenshots placeholders)
+## Evidence & validation  
 
 **Screenshot 1 – Normal GET /admin (access denied + hint)**  
 <img width="718" height="341" alt="image" src="https://github.com/user-attachments/assets/481749e2-4b79-4e95-81df-91ccec5607ca" />
